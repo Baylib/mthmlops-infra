@@ -13,7 +13,7 @@ spec:
     path: manifests/kustomize/env/platform-agnostic
   destination:
     server: https://kubernetes.default.svc
-    namespace: mthmlops 
+    namespace: kubeflow
   syncPolicy:
     automated:
       prune: true
