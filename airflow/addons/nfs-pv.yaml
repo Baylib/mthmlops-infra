@@ -11,4 +11,4 @@ spec:
   storageClassName: ""
   nfs:
     server: nfs-service.nfs.svc.cluster.local
-    path: /nfs-share
+    path: /nfs
