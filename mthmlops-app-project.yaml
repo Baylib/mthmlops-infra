@@ -8,6 +8,10 @@ spec:
   sourceRepos:
     - '*'
   destinations:
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+    - namespace: kubeflow
+      server: https://kubernetes.default.svc
     - namespace: airflow
       server: https://kubernetes.default.svc
     - namespace: mthmlops

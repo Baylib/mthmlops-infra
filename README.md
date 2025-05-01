@@ -19,5 +19,6 @@ To install all the infrastructure install the mthmlops project and app-of-apps.
 ```bash
 kubectl apply -f ./mthmlops-app-project.yaml
 kubectl apply -f ./mthmlops-app-of-apps.yaml
+kubectl apply -f ./mthmlops-repo.yaml # requires a personal access token or ssh key to this private repository
 ```
 
