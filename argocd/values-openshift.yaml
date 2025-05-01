@@ -1,0 +1,12 @@
+server:
+  route:
+    # -- Enable an OpenShift Route for the Argo CD server
+    enabled: true
+    # -- Openshift Route annotations
+    #annotations: {}
+    # -- Hostname of OpenShift Route
+    hostname: "argocd-server-argocd.apps-crc.testing"
+    # -- Termination type of Openshift Route
+    termination_type: passthrough
+    # -- Termination policy of Openshift Route
+    termination_policy: None

@@ -1,0 +1,13 @@
+global:
+    domain: "argocd.local"
+server:
+  service:
+    type: NodePort
+  ingress:
+    enabled: true
+    controller: generic
+    ingressClassName: "nginx"
+#    annotations:
+#      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
