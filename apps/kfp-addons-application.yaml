@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/baylib/mthmlops-infra.git
     targetRevision: main
-    path: airflow/airflow-addons/
+    path: kubeflow/addons/
   destination:
     server: https://kubernetes.default.svc
     namespace: airflow
