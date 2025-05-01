@@ -8,6 +8,9 @@ spec:
       image: itsthenetwork/nfs-server-alpine:latest
       securityContext:
         privileged: true
+      env:
+        - name: SHARED_DIRECTORY
+          value: /nfs
       args:
         - /nfs
       volumeMounts:
