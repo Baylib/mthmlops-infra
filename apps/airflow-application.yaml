@@ -1,0 +1,70 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: airflow
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  source:
+    repoURL: https://airflow.apache.org
+    chart: airflow
+    targetRevision: 1.15.0
+    helm:
+      releaseName: airflow
+      valuesObject:
+        executor: "KubernetesExecutor"
+        allowPodLaunching: true
+
+        webserver: 
+          service:
+            type: NodePort
+            annotations: {}
+            ports:
+              - name: airflow-ui
+                port: 8080
+            ports:
+              - name: airflow-ui
+                port: 8080
+                targetPort: 8080
+                nodePort: 31151
+
+        triggerer:
+          persistence:
+            size: 10Gi        
+
+        workers:
+          persistence:
+            size: 10Gi
+
+          serviceAccount:
+            create: true
+            name: "airflow-sa"
+            annotations: {}
+
+
+        dags:
+          persistence:
+            enabled: false
+          gitSync:
+            enabled: true
+            repo: git@github.com:baylib/airflow-dags.git
+            branch: main 
+            subPath: "dags"
+            sshKeySecret: airflow-ssh-secret # secret must exist in the namespace
+
+        ingress:
+          web:
+            enabled: true
+            host: airflow.local
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: airflow
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

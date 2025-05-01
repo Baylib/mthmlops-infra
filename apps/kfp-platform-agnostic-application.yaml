@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeflow-pipelines 
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: mthmlops
+  source:
+    repoURL: https://github.com/kubeflow/pipelines.git
+    targetRevision: 2.5.0
+    path: manifests/kustomize/env/platform-agnostic
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mthmlops 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
