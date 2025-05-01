@@ -1,20 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubeflow-pipelines
+  name: nfs-server
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: mthmlops
   source:
-    repoURL: https://github.com/kubeflow/pipelines.git
-    targetRevision: 2.5.0
-    path: manifests/kustomize/env/platform-agnostic
+    repoURL: https://github.com/baylib/mthmlops-infra.git
+    targetRevision: main
+    path: nfs-server/
   destination:
     server: https://kubernetes.default.svc
-    namespace: kubeflow
+    namespace: nfs
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 
