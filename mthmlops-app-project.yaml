@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: mthmlops
+  namespace: argocd
+spec:
+  description: MThMLOps Project 
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: airflow
+      server: https://kubernetes.default.svc
+    - namespace: mthmlops
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  orphanedResources:
+    warn: true
+
