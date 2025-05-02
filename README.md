@@ -22,3 +22,20 @@ kubectl apply -f ./mthmlops-app-of-apps.yaml
 kubectl apply -f ./mthmlops-repo.yaml # requires a personal access token or ssh key to this private repository
 ```
 
+### Kubeflow-pipelines patch
+
+To use kubeflow pipeline standalone it requires to patch the pipeline-runner role after the deployment.
+The ArgoCD application is configured to ignore this difference.
+
+```bash
+kubectl patch role pipeline-runner -n kubeflow --type='json' -p='[
+{
+    "op": "add",
+    "path": "/rules/-",
+    "value": {
+        "apiGroups": ["argoproj.io"],
+        "resources": ["workflowtaskresults"],
+        "verbs": ["get", "list", "create", "watch", "patch"]
+    }
+}]'
+ ```
