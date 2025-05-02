@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mthmlops-nfs-pvc
+  name: nfs-pvc
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
-  volumeName: nfs-pv-kubeflow
+  volumeName: nfs-pv
   storageClassName: ""
