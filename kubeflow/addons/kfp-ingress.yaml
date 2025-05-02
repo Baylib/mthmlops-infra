@@ -1,0 +1,17 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: kfp-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: kfp.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ml-pipeline-ui
+                port:
+                  number: 8080
