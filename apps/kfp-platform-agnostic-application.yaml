@@ -17,4 +17,12 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
+  ignoreDifferences:
+    - group: "rbac.authorization.k8s.io"
+      kind: Role
+      name: pipeline-runner
+      namespace: kubeflow
+      jsonPointers:
+        - /rules/-
+      jqPathExpressions:
+        - '.rules[] | select(.resources == ["workflowtaskresults"])'
