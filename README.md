@@ -17,6 +17,20 @@ If you don't already use ArgoCD, you can install ArgoCD from argocd directory.
 
 ## Installation
 
+### Pre-installation
+
+Some secrets must be present on the cluster.
+
+Kubeflow requires a webhook-server-tls certificate
+```bash
+openssl req -x509 -newkey rsa:2048 -keyout webhook-server.key -out webhook-server.crt -days 365 -nodes
+kubectl create secret tls webhook-server-tls --cert=webhook-server.crt --key=webhook-server.key --namespace=kubeflow
+```
+
+ArgoCD will require a git personal access token or ssh key to access private GitHub repositories.
+
+### Installation
+
 To ease the installation process we use the 
 [app of apps patterns](https://argo-cd.readthedocs.io/en/latest/operator-manual/cluster-bootstrapping/#app-of-apps-pattern).
 To install all the infrastructure install the mthmlops project, app-of-apps and repo.
