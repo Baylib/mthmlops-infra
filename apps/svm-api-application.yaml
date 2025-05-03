@@ -8,7 +8,7 @@ spec:
   source:
     chart: svm-api-helm
     repoURL: registry-1.docker.io/mthmlops
-    targetRevision: 0.1.0-ff0f8de474e1421189bc85e9e969178a0b4e5c1a
+    targetRevision: 0.1.0-37884fdf8e38fb70ea3744a7305221d8a177d6e4
     helm:
       # releaseName: mthmlops-svm-api
       valuesObject:
