@@ -20,9 +20,9 @@ spec:
           service:
             type: NodePort
             annotations: {}
-            ports:
-              - name: airflow-ui
-                port: 8080
+            # ports:
+            #  - name: airflow-ui
+            #    port: 8080
             ports:
               - name: airflow-ui
                 port: 8080
@@ -42,13 +42,12 @@ spec:
             name: "airflow-sa"
             annotations: {}
 
-
         dags:
           persistence:
             enabled: false
           gitSync:
             enabled: true
-            repo: git@github.com:baylib/airflow-dags.git
+            repo: git@github.com:baylib/mthmlops-exploitation.git
             branch: main 
             subPath: "dags"
             sshKeySecret: airflow-ssh-secret # secret must exist in the namespace
