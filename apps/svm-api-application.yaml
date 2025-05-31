@@ -12,7 +12,7 @@ spec:
     chart: svm-api-helm
     helm:
       valuesObject:
-        modelVersion: 0.0.7
+        modelVersion: 0.0.8
     repoURL: registry-1.docker.io/mthmlops
     targetRevision: 0.1.0
   syncPolicy:
