@@ -4,21 +4,20 @@ metadata:
   name: mthmlops-app
   namespace: argocd
 spec:
+  destination:
+    namespace: mthmlops-prod
+    server: https://kubernetes.default.svc
   project: mthmlops
   source:
     chart: svm-api-helm
+    helm:
+      valuesObject:
+        modelVersion: 0.0.6
     repoURL: registry-1.docker.io/mthmlops
     targetRevision: 0.1.0
-    helm:
-      # releaseName: mthmlops-svm-api
-      valuesObject:
-        modelVersion: 0.0.1
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: mthmlops-prod
   syncPolicy:
     automated:
-      prune: true  # Enable auto-pruning
-      selfHeal: true  # Auto-correct drift
+      prune: true
+      selfHeal: true
     syncOptions:
-      - CreateNamespace=true  # Auto-create target namespace
+    - CreateNamespace=true
